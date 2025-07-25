@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DO NOT ENTER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: 'Nosifer', sans-serif;
+      margin: 0;
+      overflow: hidden;
+      animation: flicker 2s infinite;
+    }
+
+    h1 {
+      font-size: 4rem;
+      text-align: center;
+      margin-top: 100px;
+      animation: glitch 1s infinite;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.5rem;
+      color: crimson;
+      animation: flicker 3s infinite;
+    }
+
+    a {
+      display: block;
+      width: fit-content;
+      margin: 50px auto;
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      background: darkred;
+      border: 2px solid crimson;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      animation: bleed 1.5s infinite;
+    }
+
+    a:hover {
+      background: crimson;
+      color: black;
+      text-shadow: 0 0 5px red;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0; }
+    }
+
+    @keyframes glitch {
+      0%   { text-shadow: 2px 0 red, -2px 0 cyan; }
+      20%  { text-shadow: -2px 0 red, 2px 0 cyan; }
+      40%  { text-shadow: 2px 2px red, -2px -2px cyan; }
+      60%  { text-shadow: -2px -2px red, 2px 2px cyan; }
+      80%  { text-shadow: 2px -2px red, -2px 2px cyan; }
+      100% { text-shadow: -2px 2px red, 2px -2px cyan; }
+    }
+
+    @keyframes bleed {
+      0%   { box-shadow: 0 0 5px red; }
+      50%  { box-shadow: 0 0 25px crimson; }
+      100% { box-shadow: 0 0 5px red; }
+    }
+  </style>
+</head>
+<body>
+  <h1>☠️ DO NOT ENTER ☠️</h1>
+  <p>This site is cursed. Turn back now... if you can.</p>
+  <a href="void.html" id="voidBtn">ENTER THE VOID</a>
+
+  <!-- Background creepy audio -->
+  <audio id="bgSound" autoplay loop>
+    <source src="062740_creepy-ghost-scream-81907.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Scream sound on hover -->
+  <audio id="screamSound">
+    <source src="062740_creepy-ghost-scream-81907.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const scream = document.getElementById('screamSound');
+    const btn = document.getElementById('voidBtn');
+
+    btn.addEventListener('mouseenter', () => {
+      scream.currentTime = 0;
+      scream.play();
+    });
+
+    // Ensure background sound plays even if autoplay is blocked
+    window.addEventListener('click', () => {
+      const bg = document.getElementById('bgSound');
+      if (bg.paused) bg.play();
+    });
+  </script>
+</body>
+</html>

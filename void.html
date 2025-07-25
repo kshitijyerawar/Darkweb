@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>You Shouldn't Be Here</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #100000;
+      color: crimson;
+      font-family: 'Nosifer', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      overflow: hidden;
+      position: relative;
+      animation: flicker 3s infinite;
+    }
+
+    h1 {
+      font-size: 4rem;
+      animation: glitch 2s infinite;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 40px;
+    }
+
+    /* GHOST */
+    .ghost {
+      position: absolute;
+      top: 50%;
+      left: -200px;
+      width: 150px;
+      opacity: 0;
+      animation: flyAcross 2s ease-out 3s forwards;
+      z-index: 1000;
+    }
+
+    @keyframes flyAcross {
+      0% { left: -200px; opacity: 0; transform: scale(0.5) rotate(0deg); }
+      10% { opacity: 1; }
+      50% { transform: scale(1.2) rotate(5deg); }
+      100% { left: 120%; opacity: 0; transform: scale(1.8) rotate(-10deg); }
+    }
+
+    /* BLOOD SPLASH */
+    .blood {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0;
+      animation: splash 1s ease-out 3.1s forwards;
+      z-index: 999;
+    }
+
+    @keyframes splash {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* FAKE SYSTEM ERROR */
+    .fake-error {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 15px;
+      background: #110000;
+      color: red;
+      font-family: monospace;
+      font-size: 14px;
+      text-align: center;
+      border-top: 1px solid red;
+      opacity: 0;
+      animation: showError 1s ease-in 5s forwards;
+      z-index: 1000;
+    }
+
+    @keyframes showError {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CURSOR GLITCH */
+    body.glitch-cursor {
+      animation: cursorGlitch 1s steps(1, end) infinite;
+      animation-delay: 5s;
+    }
+
+    @keyframes cursorGlitch {
+      0%   { cursor: default; }
+      25%  { cursor: crosshair; }
+      50%  { cursor: none; }
+      75%  { cursor: wait; }
+      100% { cursor: grab; }
+    }
+
+    /* FLICKERING LIGHTS */
+    .flicker-top, .flicker-bottom {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: red;
+      opacity: 0.2;
+      z-index: 1000;
+      animation: flickerLight 0.1s infinite;
+    }
+
+    .flicker-top { top: 0; }
+    .flicker-bottom { bottom: 0; }
+
+    @keyframes flickerLight {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* SCREEN SHAKE */
+    body.shake {
+      animation: shakeScreen 0.4s infinite;
+    }
+
+    @keyframes shakeScreen {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(5px, -5px); }
+      50% { transform: translate(-5px, 5px); }
+      75% { transform: translate(5px, 5px); }
+      100% { transform: translate(-5px, -5px); }
+    }
+
+    /* "Your camera is on" */
+    .camera-warning {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      background: black;
+      color: red;
+      padding: 5px 10px;
+      font-family: monospace;
+      font-size: 12px;
+      border: 1px solid red;
+      opacity: 0;
+      animation: camAppear 1s ease-in 6s forwards;
+      z-index: 1000;
+    }
+
+    @keyframes camAppear {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MELTDOWN FINAL EFFECT */
+    body.meltdown * {
+      animation: meltdown 1s infinite;
+    }
+
+    @keyframes meltdown {
+      0% { transform: scale(1) rotate(0); }
+      50% { transform: scale(1.03) rotate(1deg); filter: hue-rotate(90deg); }
+      100% { transform: scale(1) rotate(-1deg); filter: hue-rotate(-90deg); }
+    }
+
+    /* Flicker & Glitch for title/text */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0; }
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 crimson, -2px 0 lime; }
+      20% { text-shadow: -2px 0 crimson, 2px 0 lime; }
+      40% { text-shadow: 2px 2px crimson, -2px -2px lime; }
+      60% { text-shadow: -2px -2px crimson, 2px 2px lime; }
+      80% { text-shadow: 2px -2px crimson, -2px 2px lime; }
+      100% { text-shadow: -2px 2px crimson, 2px -2px lime; }
+    }
+  </style>
+</head>
+<body class="glitch-cursor">
+  <h1>YOU SHOULDN’T BE HERE</h1>
+  <p>The void has accepted you.<br>There’s no escape.</p>
+
+  <img src="ghost.jpg" class="ghost" alt="ghost" />
+  <img src="OIP-1155575582.uGKf9YgnVKocDc_olXw-wQHaEc.jpg" class="blood" alt="blood splash" />
+
+  <div class="flicker-top"></div>
+  <div class="flicker-bottom"></div>
+
+  <div class="camera-warning">🔴 Your camera is on.</div>
+  <div class="fake-error">SYSTEM ERROR: Cursed ghost breached firewall. Isolation failed.</div>
+
+  <audio id="scream" src="062740_creepy-ghost-scream-81907.mp3" preload="auto"></audio>
+
+  <script>
+    window.addEventListener("load", () => {
+      // scream after 3s
+      setTimeout(() => {
+        document.getElementById("scream").play().catch(() => {});
+      }, 3000);
+
+      // screen shake after 7s
+      setTimeout(() => {
+        document.body.classList.add("shake");
+      }, 7000);
+
+      // meltdown effect after 10s
+      setTimeout(() => {
+        document.body.classList.add("meltdown");
+      }, 10000);
+    });
+  </script>
+</body>
+</html>
